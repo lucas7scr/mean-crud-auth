@@ -1,7 +1,7 @@
 {
-  "name": "aplicacao-nodejs-teste",
+  "name": "nodejs-crud-times",
   "version": "1.0.0",
-  "description": "apl1c4çã0 test3 rsrsrshahaa",
+  "description": "testando ejs c nodejs",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,8 +21,7 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
-    "ejs": "^2.5.6",
-    "express": "^4.14.1",
+    "express": "^4.15.2",
     "express-ejs-layouts": "^2.2.0",
     "express-session": "^1.15.2",
     "express-validator": "^3.1.2",

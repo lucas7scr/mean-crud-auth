@@ -24,7 +24,7 @@ app.use(session({
 app.use(flash());
 
 //apontando o express.js onde procurar pelos arquivos estáticos do css usando o 'static'
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 //setando o ejs como template padrão
 app.set('view engine', 'ejs');
