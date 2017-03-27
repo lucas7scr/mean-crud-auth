@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucas7scr/aplicacao-nodejs-teste.git"
+    "url": "git+https://github.com/lucas7scr/nodejs-crud-times.git"
   },
   "author": "Lucas Nascimento",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lucas7scr/aplicacao-nodejs-teste/issues"
+    "url": "https://github.com/lucas7scr/nodejs-crud-times/issues"
   },
-  "homepage": "https://github.com/lucas7scr/aplicacao-nodejs-teste#readme",
+  "homepage": "https://github.com/lucas7scr/nodejs-crud-times#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "connect-flash": "^0.1.1",
