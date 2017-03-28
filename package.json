@@ -1,6 +1,6 @@
 {
   "name": "nodejs-crud-times",
-  "version": "1.0.0",
+  "version": "7.4.0",
   "description": "testando ejs c nodejs",
   "main": "server.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
     "express": "^4.15.2",
     "express-ejs-layouts": "^2.2.0",
     "express-session": "^1.15.2",
