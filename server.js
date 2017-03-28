@@ -2,9 +2,9 @@
 require('dotenv').config();
 
 //dependências
-const express   = require('express'),
+const express    = require('express'),
   app            = express(),
-  porta          = process.env.PORT || 8080;
+  port           = process.env.PORT || 8080,
   expressLayouts = require('express-ejs-layouts'),
   mongoose       = require('mongoose'),
   bodyParser     = require('body-parser'),
@@ -23,8 +23,8 @@ app.use(session({
 }));
 app.use(flash());
 
-//apontando o express.js onde procurar pelos arquivos estáticos do css usando o 'static'
-//app.use(express.static(__dirname + '/public'));
+//apontando o express.js onde procurar pelos arquivos do css
+app.use(express.static(__dirname + '/public'));
 
 //setando o ejs como template padrão
 app.set('view engine', 'ejs');
@@ -41,6 +41,6 @@ app.use(expressValidator());
 app.use(require('./app/routes'));
 
 //start server com o express
-app.listen(porta, () => {
-    console.log(`Aplicação rodando em http://localhost:${porta}`);
+app.listen(port, () => {
+    console.log(`Aplicação rodando em http://localhost:${port}`);
 });

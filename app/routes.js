@@ -2,31 +2,31 @@
 const express      = require('express'),
   router           = express.Router(),
   mainController   = require('./controllers/main.controller'),
-  timeController = require('./controllers/time.controller');
+  timesController  = require('./controllers/times.controller');
 
 //exportando a rota
 module.exports = router;
 
 //definir as rotas
 //principais rotas
-router.get('/', mainController.showHome);
+router.get('/', mainController.paginaInicial);
 
 //rotas de eventos
-router.get('/time',       timeController.listarTodos);
+router.get('/times',       timesController.listarTodos);
 
 //visualizar eventos
-//router.get('/time/seed',  timeController.seedtime);
+router.get('/times/seed',  timesController.seedTimes);
 
 //criar eventos
-router.get('/time/incluir',  timeController.listarAposCriar);
-router.post('/time/incluir', timeController.incluirTime);
+router.get('/times/incluir',  timesController.listarAposIncluir);
+router.post('/times/incluir', timesController.incluirTime);
 
 //editar eventos
-router.get('/time/:slug/editar', timeController.listarAposEditar);
-router.post('/time/:slug',     timeController.editarTime);
+router.get('/times/:slug/editar', timesController.listarAposEditar);
+router.post('/times/:slug',     timesController.editarTime);
 
 //deletar eventos
-router.get('/time/:slug/deletar', timeController.excluirTime);
+router.get('/times/:slug/deletar', timesController.excluirTime);
 
 //visualizar somente 1 evento
-router.get('/time/:slug', timeController.listarTime);
+router.get('/times/:slug', timesController.listarTime);
