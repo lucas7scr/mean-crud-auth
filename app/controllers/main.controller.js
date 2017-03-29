@@ -1,8 +1,6 @@
 module.exports = {
-
-  // visualizar a página inicial
-  showHome: (req, res) => {
+  //visualizar página inicial
+  paginaInicial: (req, res) => {
     res.render('pages/home');
   }
-
 };

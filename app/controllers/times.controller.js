@@ -3,8 +3,8 @@ const Time = require('../models/time');
 module.exports = {
   listarTodos: listarTodos,
   listarTime: listarTime,
-  //seedtime: seedtime,
-  listarAposCriar: listarAposCriar,
+  seedTimes: seedTimes,
+  listarAposIncluir: listarAposIncluir,
   incluirTime: incluirTime,
   listarAposEditar: listarAposEditar,
   editarTime: editarTime,
@@ -12,15 +12,15 @@ module.exports = {
 }
 
 function listarTodos(req, res) { 
-  Time.find({}, (err, time) => {
+  Time.find({}, (err, times) => {
     if (err) {
       res.status(404);
       res.send('Time não encontrado!');
     }
 
     //retorna a página com sucesso
-    res.render('pages/time', { 
-      time: time,
+    res.render('pages/times', { 
+      times: times,
       success: req.flash('success')
     });
   });
@@ -40,8 +40,29 @@ function listarTime(req, res) {
   });
 }
 
-function listarAposCriar(req, res) {
-  res.render('pages/create', {
+function seedTimes(req, res) {
+  // criando times
+  const times = [
+    { nome: 'Sport Club do Recife', descricao: 'Maior do Brasil' },
+    { nome: 'Santa Cruz', descricao: 'Menor de Recife' },
+    { nome: 'Nautico', descricao: 'Fracasso Total' },
+    { nome: 'Salgueiro', descricao: 'Maior do Interior' }
+  ];
+
+  //usar time para inserir/salvar
+  Time.remove({}, () => {
+    for (time of times) {
+      var newTime = new Time(time);
+      newTime.save();
+    }
+  });
+
+  //enviado!
+  res.send('Database att!');
+}
+
+function listarAposIncluir(req, res) {
+  res.render('pages/incluir', {
     errors: req.flash('errors')
   });
 }
@@ -55,7 +76,7 @@ function incluirTime(req, res) {
   const errors = req.validationErrors();
   if (errors) {
     req.flash('errors', errors.map(err => err.msg));
-    return res.redirect('/time/incluir');
+    return res.redirect('/times/incluir');
   }
 
   //criar um novo time
@@ -65,21 +86,21 @@ function incluirTime(req, res) {
   });
 
   //salvar o time
-  event.save((err) => {
+  time.save((err) => {
     if (err)
       throw err;
 
     //mensagem de sucesso 
-    req.flash('success', 'Cadastrado com sucesso.');
+    req.flash('success', 'Cadastrado com sucesso!');
 
     //redireciona ao time criado
-    res.redirect(`/time/${time.slug}`);
+    res.redirect(`/times/${time.slug}`);
   });
 }
 
 function listarAposEditar(req, res) {
   Time.findOne({ slug: req.params.slug }, (err, time) => {
-    res.render('pages/edit', {
+    res.render('pages/editar', {
       time: time,
       errors: req.flash('errors')
     });
@@ -95,10 +116,10 @@ function editarTime(req, res) {
   const errors = req.validationErrors();
   if (errors) {
     req.flash('errors', errors.map(err => err.msg));
-    return res.redirect(`/time/${req.params.slug}/edit`);
+    return res.redirect(`/times/${req.params.slug}/editar`);
   }
 
-  Time.findOne({ slug: req.params.slug }, (err, time) => {
+    Time.findOne({ slug: req.params.slug }, (err, time) => {
     //atualizando time
     time.nome        = req.body.nome;
     time.descricao = req.body.descricao;
@@ -110,7 +131,7 @@ function editarTime(req, res) {
       //mensagem flash de sucesso
       //redireciona de volta a /time
       req.flash('success', 'Atualizado com sucesso!');
-      res.redirect('/time');
+      res.redirect('/times');
     });
   });
 
@@ -118,9 +139,9 @@ function editarTime(req, res) {
 
 function excluirTime(req, res) {
   Time.remove({ slug: req.params.slug }, (err) => {
-    //set flash data
+    //flash data
     //redireciona de volta a pagina de times
     req.flash('success', 'Deletado com sucesso!');
-    res.redirect('/time');
+    res.redirect('/times');
   });
 }
