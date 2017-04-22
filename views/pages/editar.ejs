@@ -1,0 +1,33 @@
+<div class="jumbotron text-center">
+    <h1>Atualizando <%= time.nome %></h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <% if (errors.length > 0) { %>
+            <div class="alert alert-danger">
+                <% for (error of errors) { %>
+                    <%= error %><br>
+                <% } %>
+            </div>
+        <% } %>
+        
+        <form action="/times/<%= time.slug %>" method="POST">
+
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" name="nome" class="form-control" value="<%= time.nome %>">
+            </div>
+
+            <div class="form-group">
+                <label>Descrição</label>
+                <textarea name="descricao" rows="5" class="form-control"><%= time.descricao %></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg">Atualizar</button>
+            </div>
+        </form>
+    </div>
+</div>

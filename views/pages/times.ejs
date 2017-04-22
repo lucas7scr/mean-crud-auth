@@ -1,0 +1,32 @@
+<div class="jumbotron text-center">
+    <h1>Lista de Times</h1>
+</div>
+
+<% if (success.length > 0) { %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Descrição</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <% for (var time of times) { %>
+            <tr>
+                <td><%= time.nome %></td>
+                <td><%= time.descricao %></td>
+                <td>
+                    <a href="/times/<%= time.slug %>" class="btn btn-sm btn-primary">Visualizar</a>
+                    <a href="/times/<%= time.slug %>/editar" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="/times/<%= time.slug %>/deletar" class="btn btn-sm btn-danger">Remover</a>
+                </td>
+            </tr>
+        <% } %>
+
+    </tbody>
+</table>
