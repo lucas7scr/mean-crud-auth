@@ -1,7 +1,6 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-//criar o Schema
 const timeSchema = new Schema({
   nome: String,
   slug: {
@@ -11,19 +10,15 @@ const timeSchema = new Schema({
   descricao: String
 });
 
-//middleware
 timeSchema.pre('save', function(next) {
   this.slug = slugify(this.nome);
   next();
 });
 
-//criar o model
 const timeModel = mongoose.model('Time', timeSchema);
 
-//exportar o modulo
 module.exports = timeModel;
 
-//função p/ 'slugify' o nome
 function slugify(text) {
   return text.toString().toLowerCase()
     .replace(/\s+/g, '-')           //Substitui espaços com -
