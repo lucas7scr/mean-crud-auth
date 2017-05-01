@@ -33,7 +33,7 @@ function registrarUsuario(req, res){
         console.log(usuario)
     })
 
-    req.flash('sucess', 'Usuário registrado com sucesso')
+    req.flash('success', 'Usuário registrado com sucesso')
     //res.redirect('/usuarios/login')
 
   
