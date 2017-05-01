@@ -3,6 +3,7 @@ const express      = require('express'),
   router           = express.Router(),
   mainController   = require('./controllers/main.controller'),
   timesController  = require('./controllers/times.controller');
+  usuariosController = require('./controllers/usuarios.controller.js')
 
 //exportando a rota
 module.exports = router;
@@ -30,3 +31,5 @@ router.get('/times/:slug/deletar', timesController.excluirTime);
 
 //visualizar somente 1 evento
 router.get('/times/:slug', timesController.listarTime);
+
+router.post('/usuarios/registrar', usuariosController.registrarUsuario);
