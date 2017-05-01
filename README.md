@@ -1,2 +1,2 @@
 # nodejs-crud-times
-aplicação utilizando nodejs/expressjs/mongodb e front-end com ejs
+aplicação com sistema de login e crud com nodejs/expressjs/mongodb (templating com ejs)
