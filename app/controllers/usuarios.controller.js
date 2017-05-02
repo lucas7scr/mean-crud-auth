@@ -18,7 +18,7 @@ function registrarUsuario(req, res){
     const errors = req.validationErrors();
     if(errors){
         req.flash('errors', errors.map(err => err.msg));
-        return res.direct('/usuarios/registrar');   
+        return res.redirect('/');   
     }
 
     const novoUsuario = new Usuario({
