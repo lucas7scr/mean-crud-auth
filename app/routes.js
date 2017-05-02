@@ -10,7 +10,7 @@ router.get('/', mainController.paginaInicial);
 
 router.get('/times',       timesController.listarTodos);
 
-router.get('/times/seed',  timesController.alimentarBanco);
+router.get('/times/alimentar',  timesController.alimentarBanco);
 
 router.get('/times/incluir',  timesController.exibirFormIncluir);
 router.post('/times/incluir', timesController.incluirTime);
@@ -24,3 +24,5 @@ router.get('/times/:slug', timesController.listarTime);
 
 router.get('/usuarios/registrar', usuariosController.exibirFormRegistrar);
 router.post('/usuarios/registrar', usuariosController.registrarUsuario);
+
+router.get('/usuarios/login', usuariosController.exibirFormLogin);

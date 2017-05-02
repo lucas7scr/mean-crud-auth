@@ -2,7 +2,8 @@ const Usuario = require('../models/usuario');
 
 module.exports = {
     registrarUsuario: registrarUsuario,
-    exibirFormRegistrar: exibirFormRegistrar
+    exibirFormRegistrar: exibirFormRegistrar,
+    exibirFormLogin: exibirFormLogin
 }
 
 /*================= FUNÇÃO P/ REGISTRAR USUÁRIO ===================*/
@@ -40,6 +41,13 @@ function registrarUsuario(req, res){
 /*================= FUNÇÃO P/ EXIBIR O FORMULÁRIO DE REGISTRO ===================*/
 function exibirFormRegistrar(req, res){
     res.render('pages/registrar', {
+        errors: req.flash('errors')
+    });
+}
+
+/*================= FUNÇÃO P/ EXIBIR O FORMULÁRIO DE LOGIN ===================*/
+function exibirFormLogin(req, res){
+    res.render('pages/login', {
         errors: req.flash('errors')
     });
 }
