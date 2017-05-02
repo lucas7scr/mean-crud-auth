@@ -4,10 +4,10 @@ const Time = require('../models/time');
 module.exports = {
   listarTodos: listarTodos,
   listarTime: listarTime,
-  seedTimes: seedTimes,
-  listarAposIncluir: listarAposIncluir,
+  alimentarBanco: alimentarBanco,
+  exibirFormIncluir: exibirFormIncluir,
   incluirTime: incluirTime,
-  listarAposEditar: listarAposEditar,
+  exibirFormEditar: exibirFormEditar,
   editarTime: editarTime,
   excluirTime: excluirTime
 }
@@ -44,27 +44,9 @@ function listarTime(req, res) {
   });
 }
 
-function seedTimes(req, res) {
-  const times = [
-    { nome: 'Sport Club do Recife', descricao: 'Maior do Brasil' },
-    { nome: 'Santa Cruz', descricao: 'Menor de Recife' },
-    { nome: 'Nautico', descricao: 'Fracasso Total' },
-    { nome: 'Salgueiro', descricao: 'Maior do Interior' }
-  ];
+/*================= FUNÇÃO P/ EXIBIR O FORMULÁRIO DE INCLUSÃO ===================*/
 
-  Time.remove({}, () => {
-    for (time of times) {
-      var newTime = new Time(time);
-      newTime.save();
-    }
-  });
-
-  res.send('Database att!');
-}
-
-/*================= FUNÇÃO P/ LISTAR O TIME CADASTRADO ===================*/
-
-function listarAposIncluir(req, res) {
+function exibirFormIncluir(req, res) {
   res.render('pages/incluir', {   //renderizando a pag incluir
     errors: req.flash('errors')   //msgs de erro com o FLASH :D
   });
@@ -96,9 +78,9 @@ function incluirTime(req, res) {
   });
 }
 
-/*================= FUNÇÃO P/ LISTAR O TIME EDITADO ===================*/
+/*================= FUNÇÃO P/ EXIBIR O FORMULÁRIO EDITAR ===================*/
 
-function listarAposEditar(req, res) {
+function exibirFormEditar(req, res) {
   Time.findOne({ slug: req.params.slug }, (err, time) => {    //findOne com slug (ou seja, select no time q vc quer editar)
     res.render('pages/editar', {                              ////renderizando a pag incluir
       time: time,
@@ -141,4 +123,24 @@ function excluirTime(req, res) {
     req.flash('success', 'Deletado com sucesso!');           //msgs flash :O
     res.redirect('/times');                                  //redirect
   });
+}
+
+/*================= FUNÇÃO P/ REALIZAR CADASTROS NO MONGODB ===================*/
+
+function alimentarBanco(req, res) {
+  const times = [
+    { nome: 'Sport Club do Recife', descricao: 'Maior do Brasil' },
+    { nome: 'Santa Cruz', descricao: 'Menor de Recife' },
+    { nome: 'Nautico', descricao: 'Fracasso Total' },
+    { nome: 'Salgueiro', descricao: 'Maior do Interior' }
+  ];
+
+  Time.remove({}, () => {
+    for (time of times) {
+      var newTime = new Time(time);
+      newTime.save();
+    }
+  });
+
+  res.send('times inseridos rs');
 }

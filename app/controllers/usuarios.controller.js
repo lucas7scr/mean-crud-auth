@@ -1,11 +1,11 @@
-/*================= FUNÇÃO P/ REGISTRAR USUÁRIO ===================*/
-
 const Usuario = require('../models/usuario');
 
 module.exports = {
-    registrarUsuario: registrarUsuario
+    registrarUsuario: registrarUsuario,
+    exibirFormRegistrar: exibirFormRegistrar
 }
 
+/*================= FUNÇÃO P/ REGISTRAR USUÁRIO ===================*/
 function registrarUsuario(req, res){
     //validação
     req.checkBody('nome', 'Favor preencher o nome').notEmpty();
@@ -35,6 +35,11 @@ function registrarUsuario(req, res){
 
     req.flash('success', 'Usuário registrado com sucesso')
     //res.redirect('/usuarios/login')
+}
 
-  
+/*================= FUNÇÃO P/ EXIBIR O FORMULÁRIO DE REGISTRO ===================*/
+function exibirFormRegistrar(req, res){
+    res.render('pages/registrar', {
+        errors: req.flash('errors')
+    });
 }
