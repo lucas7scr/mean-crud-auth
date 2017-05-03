@@ -70,7 +70,7 @@ function incluirTime(req, res) {
     descricao: req.body.descricao
   });
 
-  time.save((err) => {              //save no mongodb (tipo um insert)
+  time.save((err) => {              //save no mongodb (tipo um insert) dsfdsfdsfs
     if (err) throw err;             //se tiver erro mostra ae
 
     req.flash('success', 'Cadastrado com sucesso!');   //msgs flash :O

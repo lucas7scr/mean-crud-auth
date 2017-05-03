@@ -16,11 +16,11 @@ function registrarUsuario(req, res){
     req.checkBody('senha', 'Favor preencher sua senha').notEmpty();
     req.checkBody('senha2', 'As senhas não coincidem!').equals(req.body.senha);
 
-    const errors = req.validationErrors();
+    /*const errors = req.validationErrors();
     if(errors){
         req.flash('errors', errors.map(err => err.msg));
         return res.redirect('/');   
-    }
+    }*/
 
     const novoUsuario = new Usuario({
         nome: req.body.nome,
@@ -34,8 +34,8 @@ function registrarUsuario(req, res){
         console.log(usuario)
     })
 
-    req.flash('success', 'Usuário registrado com sucesso')
-    //res.redirect('/usuarios/login')
+    req.flash('success', 'Você foi registrado e já pode realizar seu login!')
+    res.redirect('/usuarios/login') 
 }
 
 /*================= FUNÇÃO P/ EXIBIR O FORMULÁRIO DE REGISTRO ===================*/
