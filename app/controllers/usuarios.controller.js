@@ -1,9 +1,13 @@
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy;
+
 const Usuario = require('../models/usuario');
 
 module.exports = {
     registrarUsuario: registrarUsuario,
     exibirFormRegistrar: exibirFormRegistrar,
-    exibirFormLogin: exibirFormLogin
+    exibirFormLogin: exibirFormLogin,
+    usuarioAutenticado: usuarioAutenticado
 }
 
 /*================= FUNÇÃO P/ REGISTRAR USUÁRIO ===================*/
@@ -16,11 +20,11 @@ function registrarUsuario(req, res){
     req.checkBody('senha', 'Favor preencher sua senha').notEmpty();
     req.checkBody('senha2', 'As senhas não coincidem!').equals(req.body.senha);
 
-    /*const errors = req.validationErrors();
+    const errors = req.validationErrors();
     if(errors){
         req.flash('errors', errors.map(err => err.msg));
-        return res.redirect('/');   
-    }*/
+        return res.redirect('/usuarios/registrar'); 
+    }
 
     const novoUsuario = new Usuario({
         nome: req.body.nome,
@@ -50,4 +54,12 @@ function exibirFormLogin(req, res){
     res.render('pages/login', {
         errors: req.flash('errors')
     });
+}
+
+function usuarioAutenticado(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        res.redirect('usuarios/login');
+    }
 }

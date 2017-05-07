@@ -18,8 +18,8 @@ app.use(cookieParser());
 app.use(session({
   secret: process.env.SECRET,   
   cookie: { maxAge: 60000 },
-  resave: false,            
-  saveUninitialized: false  
+  resave: true,            
+  saveUninitialized: true  
 }));
 
 //connect flash
@@ -36,12 +36,19 @@ app.use(expressLayouts);
 mongoose.connect(process.env.DB_URI);
 
 //interpretando as informações submetidas de algum formulario com o bodyParser
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //transformando as requisiçõe json em um objeto
 app.use(expressValidator());
 
+//passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+//variável global USUARIO
+app.use(function (req, res, next){
+  res.locals.usuario = req.usuario || null;
+  next();
+});
 
 //middleware p/ requisições das rotas da aplicação
 app.use(require('./app/routes'));

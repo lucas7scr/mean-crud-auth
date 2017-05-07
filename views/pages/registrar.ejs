@@ -2,6 +2,14 @@
     <h1>Faça seu cadastro</h1>
 </div>
 
+<% if (errors.length > 0) { %>
+            <div class="alert alert-danger">
+                <% for (error of errors) { %>
+                    <%= error %><br>
+                <% } %>
+            </div>
+        <% } %>
+
 <form action="/usuarios/registrar" method="POST">
     <div class="form-group">
         <label>Nome</label>
