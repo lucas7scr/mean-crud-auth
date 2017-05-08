@@ -12,7 +12,7 @@ router.get('/', usuariosController.usuarioAutenticado, mainController.paginaInic
 
 router.get('/times', usuariosController.usuarioAutenticado,timesController.listarTodos);
 
-router.get('/times/incluir',timesController.exibirFormIncluir);
+router.get('/times/incluir',usuariosController.usuarioAutenticado, timesController.exibirFormIncluir);
 router.post('/times/incluir', timesController.incluirTime);
 
 router.get('/times/:slug/editar', timesController.exibirFormEditar);
