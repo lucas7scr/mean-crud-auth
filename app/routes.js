@@ -12,7 +12,7 @@ router.get('/', usuariosController.usuarioAutenticado, mainController.paginaInic
 
 router.get('/times', usuariosController.usuarioAutenticado,timesController.listarTodos);
 
-router.get('/times/incluir',usuariosController.usuarioAutenticado, timesController.exibirFormIncluir);
+router.get('/times/incluir', usuariosController.usuarioAutenticado, timesController.exibirFormIncluir);
 router.post('/times/incluir', timesController.incluirTime);
 
 router.get('/times/:slug/editar', timesController.exibirFormEditar);
@@ -24,7 +24,7 @@ router.get('/times/:slug', timesController.listarTime);
 
 router.get('/times/alimentar',  timesController.alimentarBanco);
 
-router.get('/usuarios/registrar', usuariosController.exibirFormRegistrar);
+router.get('/usuarios/registrar',usuariosController.exibirFormRegistrar);
 router.post('/usuarios/registrar', usuariosController.registrarUsuario);
 
 router.get('/usuarios/login', usuariosController.exibirFormLogin);
