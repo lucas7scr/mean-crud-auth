@@ -1,4 +1,10 @@
 # MEAN STACK
+## Dependencies
+
+```sh
+Node, npm e mongodb
+```
+
 ## Run the project locally
 
 **1 -** Clone the project and install the dependencies:
